@@ -2,7 +2,7 @@
   "routes": [
     {
       "route": "/login",
-      "rewrite": "/.auth/login/aad"
+      "rewrite": "/.auth/login/azureActiveDirectory"
     },
     {
       "route": "/.auth/login/twitter",
@@ -32,5 +32,16 @@
   },
   "mimeTypes": {
     ".json": "text/json"
+  },
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "registration": {
+          "openIdIssuer": "https://login.microsoftonline.com/2a1deeb4-fbf5-4e54-8099-cfab8c93f74d/v2.0",
+          "clientIdSettingName": "1f7ce0e2-864c-4a88-9516-cacc55794040",
+          "clientSecretSettingName": "<AAD_CLIENT_SECRET>"
+        }
+      }
+    }
   }
 }
