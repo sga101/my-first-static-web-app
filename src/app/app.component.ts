@@ -3,13 +3,16 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<div>{{message}}</div>`,
+  template: `<div>{{ message }}</div><pre>{{user}}</pre>`,
 })
 export class AppComponent {
   message = '';
+  user = '';
 
   constructor(private http: HttpClient) {
-    this.http.get('/api/message')
-      .subscribe((resp: any) => this.message = resp.text);
+    this.http.get('/api/message').subscribe((resp: any) => {
+      this.message = resp.text;
+      this.user = resp.user;
+    });
   }
 }
