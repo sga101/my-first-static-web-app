@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<div>{{ message }}</div><pre>{{user}}</pre>`,
+  template: `<div>{{ message }}</div>
+    <pre>{{ user | json }}</pre>`,
 })
 export class AppComponent {
   message = '';
