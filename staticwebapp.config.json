@@ -2,17 +2,10 @@
   "routes": [
     {
       "route": "/login",
-      "rewrite": "/.auth/login/azureActiveDirectory"
-    },
-    {
-      "route": "/.auth/login/azureActiveDirectory"
+      "rewrite": "/.auth/login/aad"
     },
     {
       "route": "/*.ico"
-    },
-    {
-      "route": "/.auth/login/twitter",
-      "statusCode": 404
     },
     {
       "route": "/logout",
@@ -23,20 +16,18 @@
       "allowedRoles": ["authenticated"]
     }
   ],
-  "navigationFallback": {
-    "rewrite": "index.html",
-    "exclude": [  "/*.{js,css,ico}"]
-  },
-  "mimeTypes": {
-    ".json": "text/json"
+  "responseOverrides": {
+    "401": {
+      "redirect": "/login",
+      "statusCode": 302
+    }
   },
   "auth": {
     "identityProviders": {
       "azureActiveDirectory": {
         "registration": {
           "openIdIssuer": "https://login.microsoftonline.com/2a1deeb4-fbf5-4e54-8099-cfab8c93f74d/v2.0",
-          "clientIdSettingName": "1f7ce0e2-864c-4a88-9516-cacc55794040",
-          "clientSecretSettingName": "<AAD_CLIENT_SECRET>"
+          "clientIdSettingName": "1f7ce0e2-864c-4a88-9516-cacc55794040"
         }
       }
     }
